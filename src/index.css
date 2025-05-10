@@ -1,13 +1,114 @@
+/* Main Styles for Todo Application */
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: #f8f9fa;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  padding-bottom: 2rem;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  max-width: 800px;
+}
+
+/* Header Styles */
+header h1 {
+  font-weight: 600;
+  color: #3a86ff;
+}
+
+header p.lead {
+  color: #6c757d;
+}
+
+/* Card Styles */
+.card {
+  border-radius: 10px;
+  border: none;
+  margin-bottom: 2rem;
+}
+
+.card-header {
+  border-top-left-radius: 10px !important;
+  border-top-right-radius: 10px !important;
+}
+
+/* Form Styles */
+.form-control:focus,
+.form-select:focus {
+  border-color: #3a86ff;
+  box-shadow: 0 0 0 0.2rem rgba(58, 134, 255, 0.25);
+}
+
+/* Task List Styles */
+.task-item {
+  transition: background-color 0.2s;
+  border-left: 0;
+  border-right: 0;
+}
+
+.task-item:hover {
+  background-color: #f1f3f5;
+}
+
+.task-description {
+  margin-left: 1.8rem;
+  margin-bottom: 0;
+}
+
+.task-actions {
+  display: flex;
+  align-items: center;
+}
+
+/* Priority badge colors are defined by Bootstrap */
+.badge {
+  font-weight: 500;
+}
+
+/* Button Styles */
+.btn-primary {
+  background-color: #3a86ff;
+  border-color: #3a86ff;
+}
+
+.btn-primary:hover {
+  background-color: #2a75ea;
+  border-color: #2a75ea;
+}
+
+.btn-outline-info,
+.btn-outline-danger {
+  padding: 0.25rem 0.5rem;
+}
+
+/* Completed Task Styles */
+.completed .form-check-label {
+  color: #6c757d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767.98px) {
+  .task-actions .btn {
+    padding: 0.2rem 0.4rem;
+    font-size: 0.75rem;
+  }
+
+  .task-actions .badge {
+    font-size: 0.7rem;
+  }
+}
+
+/* Animation for new tasks */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.new-task {
+  animation: fadeIn 0.5s ease-in-out;
 }
