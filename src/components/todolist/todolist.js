@@ -2,7 +2,7 @@ import { useState } from "react";
 import Todoitem from "../todoitem/todoitem";
 import DeleteModal from "../todo-form/delete-modal";
 
-export default function Todolist({ allTasks }) {
+export default function Todolist({ allTasks, onDeleteTask }) {
   const [taskSelected, setTaskSelected] = useState("");
   return (
     <>
@@ -62,6 +62,7 @@ export default function Todolist({ allTasks }) {
       </section>
       <DeleteModal
         task={allTasks.filter((task) => task.id === taskSelected)[0]}
+        onDeleteTask={onDeleteTask}
       />
     </>
   );

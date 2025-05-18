@@ -12,11 +12,15 @@ export default function App() {
     console.log(allTasks);
   }
 
+  function handleTaskDeletion(task) {
+    setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id)]);
+  }
+
   return (
     <div className="container">
       <Header />
       <TodoForm onAddTask={handleTaskAddition} />
-      <Todolist allTasks={allTasks} />
+      <Todolist allTasks={allTasks} onDeleteTask={handleTaskDeletion} />
     </div>
   );
 }
