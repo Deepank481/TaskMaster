@@ -1,26 +1,30 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "./components/header";
 import TodoForm from "./components/todo-form/todo-form";
 import Todolist from "./components/todolist/todolist";
-import TodoItemModel from "./model/todoItemModel";
 
 export default function App() {
   const [allTasks, setAllTasks] = useState([]);
 
   function handleTaskAddition(task) {
     setAllTasks((allTasks) => (allTasks = [...allTasks, task]));
-    console.log(allTasks);
   }
+
+  useEffect(
+    function () {
+      console.log(allTasks);
+    },
+    [allTasks]
+  );
 
   function handleTaskDeletion(task) {
     setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id)]);
   }
 
   return (
-    <div className="container">
+    <div class="app-container">
       <Header />
-      <TodoForm onAddTask={handleTaskAddition} />
-      <Todolist allTasks={allTasks} onDeleteTask={handleTaskDeletion} />
+      <TodoForm allTasks={allTasks} onAddTask={handleTaskAddition} />
     </div>
   );
 }

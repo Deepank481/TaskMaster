@@ -1,14 +1,15 @@
+import TaskSummary from "../todolist/task-summary";
+import Todolist from "../todolist/todolist";
 import Form from "./form";
+import TaskFilter from "./task-filter";
 
-export default function TodoForm({ onAddTask }) {
+export default function TodoForm({ allTasks, onAddTask }) {
   return (
-    <section className="add-task-section mb-4">
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <h2 className="card-title h5 mb-3">Add New Task</h2>
-          <Form onAddTask={onAddTask} />
-        </div>
-      </div>
-    </section>
+    <div className="main-content">
+      <Form onAddTask={onAddTask} />
+      <TaskFilter />
+      <Todolist allTasks={allTasks} />
+      <TaskSummary allTask={allTasks} />
+    </div>
   );
 }
