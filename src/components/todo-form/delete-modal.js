@@ -1,76 +1,56 @@
-import { Modal } from "bootstrap";
-
-export default function DeleteModal({ task, onDeleteTask }) {
+export default function DeleteModal({
+  isActive,
+  task,
+  onDeleteTask,
+  setIsActive,
+}) {
+  console.log(isActive);
   console.log(task);
   return (
     <div
-      className="modal fade"
-      id="deleteConfirmModal"
-      tabIndex="-1"
-      aria-labelledby="deleteConfirmModalLabel"
-      aria-hidden="true"
+      className={isActive ? "modal-overlay active" : "modal-overlay"}
+      id="delete-modal"
     >
-      <div className="modal-dialog modal-dialog-centered">
-        <div className="modal-content">
-          <div className="modal-header">
-            <h5 className="modal-title" id="deleteConfirmModalLabel">
-              Confirm Delete
-            </h5>
+      <div className="modal delete-modal">
+        <div className="modal-header">
+          <h2>
+            <i className="fas fa-exclamation-triangle warning-icon"></i> Delete
+            Task
+          </h2>
+          <button
+            className="close-modal"
+            onClick={() => setIsActive(!isActive)}
+          >
+            <i className="fas fa-times"></i>
+          </button>
+        </div>
+        <div className="modal-body">
+          <p className="delete-message">
+            Are you sure you want to delete this task?
+          </p>
+          <div className="task-preview">
+            <strong id="delete-task-title">
+              {task.length > 0 ? task[0].taskTitle : ""}
+            </strong>
+            <p className="task-details">This action cannot be undone.</p>
+          </div>
+          <div className="form-actions">
             <button
               type="button"
-              className="btn-close"
-              data-bs-dismiss="modal"
-              aria-label="Close"
-              onClick={() => {
-                document.activeElement?.blur();
-
-                // Close the Bootstrap modal
-                const modalEl = document.getElementById("deleteConfirmModal");
-                const modal = Modal.getInstance(modalEl);
-                modal.hide();
-              }}
-            ></button>
-          </div>
-          <div className="modal-body">
-            <p>Are you sure you want to delete this task?</p>
-            <p className="task-to-delete fw-bold text-danger">
-              {task === undefined || task === null
-                ? "Task is undefined"
-                : task.taskTitle}
-            </p>
-          </div>
-          <div className="modal-footer">
-            <button
-              type="button"
-              className="btn btn-secondary"
-              data-bs-dismiss="modal"
-              onClick={() => {
-                document.activeElement?.blur();
-
-                // Close the Bootstrap modal
-                const modalEl = document.getElementById("deleteConfirmModal");
-                const modal = Modal.getInstance(modalEl);
-                modal.hide();
-              }}
+              className="btn-cancel"
+              onClick={() => setIsActive(!isActive)}
             >
               Cancel
             </button>
             <button
               type="button"
-              className="btn btn-danger"
-              id="confirmDeleteBtn"
+              className="btn-delete"
               onClick={() => {
-                onDeleteTask(task);
-                document.activeElement?.blur();
-
-                // Close the Bootstrap modal
-                const modalEl = document.getElementById("deleteConfirmModal");
-                const modal = Modal.getInstance(modalEl);
-                modal.hide();
+                onDeleteTask(task[0]);
+                setIsActive(!isActive);
               }}
-              data-bs-dismiss="modal"
             >
-              Delete
+              Delete Task
             </button>
           </div>
         </div>

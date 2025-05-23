@@ -1,4 +1,9 @@
-export default function Todoitem({ task }) {
+export default function Todoitem({
+  task,
+  setDeleteModal,
+  isDeleteModalActive,
+  setTaskSelected,
+}) {
   return (
     <li
       className={
@@ -31,7 +36,16 @@ export default function Todoitem({ task }) {
         <button className="edit-btn">
           <i className="fas fa-edit"></i>
         </button>
-        <button className="delete-btn">
+        <button
+          className="delete-btn"
+          onClick={() => {
+            setDeleteModal(!isDeleteModalActive);
+            setTaskSelected(() => task.id);
+            console.log(
+              "Present Status of Delete Modal::" + isDeleteModalActive
+            );
+          }}
+        >
           <i className="fas fa-trash-alt"></i>
         </button>
       </div>

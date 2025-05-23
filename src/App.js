@@ -7,7 +7,7 @@ export default function App() {
   const [allTasks, setAllTasks] = useState([]);
 
   function handleTaskAddition(task) {
-    setAllTasks((allTasks) => (allTasks = [...allTasks, task]));
+    setAllTasks(() => [...allTasks, task]);
   }
 
   useEffect(
@@ -18,13 +18,23 @@ export default function App() {
   );
 
   function handleTaskDeletion(task) {
+    console.log("Delete the task::\n");
+    console.log(task);
+    console.log("Total Task::");
+    console.log(...allTasks);
+    console.log("After Operation::");
+    console.log(allTasks.filter((t) => t.id !== task.id));
     setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id)]);
   }
 
   return (
     <div class="app-container">
       <Header />
-      <TodoForm allTasks={allTasks} onAddTask={handleTaskAddition} />
+      <TodoForm
+        allTasks={allTasks}
+        onAddTask={handleTaskAddition}
+        onDeleteTask={handleTaskDeletion}
+      />
     </div>
   );
 }

@@ -8,9 +8,9 @@ export default function Form({ onAddTask }) {
   function handleTaskAddition(e) {
     e.preventDefault();
     const newTask = new TodoItemModel(taskTitle, taskPriority);
-    onAddTask(newTask);
     setTaskTitle("");
     setTaskPriority(1);
+    onAddTask(newTask);
   }
 
   return (
@@ -21,6 +21,7 @@ export default function Form({ onAddTask }) {
             type="text"
             id="task-input"
             placeholder="Add a new task..."
+            value={taskTitle}
             required
             onChange={(e) => setTaskTitle(e.target.value)}
           />
@@ -29,6 +30,7 @@ export default function Form({ onAddTask }) {
             <select
               id="priority-select"
               onChange={(e) => setTaskPriority(e.target.value)}
+              value={taskPriority}
             >
               <option value={1}>Low</option>
               <option value={2}>Medium</option>

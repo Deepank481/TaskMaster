@@ -1,18 +1,27 @@
 import { useState } from "react";
 import Todoitem from "../todoitem/todoitem";
-import DeleteModal from "../todo-form/delete-modal";
 
-export default function Todolist({ allTasks }) {
-  const [taskSelected, setTaskSelected] = useState("");
+export default function Todolist({
+  allTasks,
+  onSetDeleteModal,
+  isDeleteModalActive,
+  setTaskSelected,
+}) {
   return (
     <div class="task-list-container">
       <h2>
-        My Tasks <span class="task-count">(5)</span>
+        My Tasks <span class="task-count">({allTasks.length})</span>
       </h2>
 
       <ul class="task-list">
         {allTasks.map((task) => (
-          <Todoitem task={task} key={task.id} />
+          <Todoitem
+            task={task}
+            key={task.id}
+            setDeleteModal={onSetDeleteModal}
+            isDeleteModalActive={isDeleteModalActive}
+            setTaskSelected={setTaskSelected}
+          />
         ))}
       </ul>
     </div>
