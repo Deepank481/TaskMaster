@@ -27,6 +27,10 @@ export default function App() {
     setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id)]);
   }
 
+  function handleTaskEdit(task) {
+    setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id), task]);
+  }
+
   return (
     <div class="app-container">
       <Header />
@@ -34,6 +38,7 @@ export default function App() {
         allTasks={allTasks}
         onAddTask={handleTaskAddition}
         onDeleteTask={handleTaskDeletion}
+        onEditTask={handleTaskEdit}
       />
     </div>
   );

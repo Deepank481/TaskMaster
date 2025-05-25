@@ -2,6 +2,8 @@ export default function Todoitem({
   task,
   setDeleteModal,
   isDeleteModalActive,
+  isEditModalActive,
+  setEditModal,
   setTaskSelected,
 }) {
   return (
@@ -33,7 +35,13 @@ export default function Todoitem({
             ? "Medium"
             : "High"}
         </span>
-        <button className="edit-btn">
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setEditModal(() => !isEditModalActive);
+            setTaskSelected(() => task.id);
+          }}
+        >
           <i className="fas fa-edit"></i>
         </button>
         <button

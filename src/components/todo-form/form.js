@@ -7,7 +7,7 @@ export default function Form({ onAddTask }) {
 
   function handleTaskAddition(e) {
     e.preventDefault();
-    const newTask = new TodoItemModel(taskTitle, taskPriority);
+    const newTask = new TodoItemModel(taskTitle, taskPriority, false);
     setTaskTitle("");
     setTaskPriority(1);
     onAddTask(newTask);

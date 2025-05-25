@@ -5,6 +5,8 @@ export default function Todolist({
   allTasks,
   onSetDeleteModal,
   isDeleteModalActive,
+  isEditModalActive,
+  onSetEditModal,
   setTaskSelected,
 }) {
   return (
@@ -21,6 +23,8 @@ export default function Todolist({
             setDeleteModal={onSetDeleteModal}
             isDeleteModalActive={isDeleteModalActive}
             setTaskSelected={setTaskSelected}
+            isEditModalActive={isEditModalActive}
+            setEditModal={onSetEditModal}
           />
         ))}
       </ul>
