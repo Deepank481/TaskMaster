@@ -8,6 +8,7 @@ export default function Todolist({
   isEditModalActive,
   onSetEditModal,
   setTaskSelected,
+  onTaskComplete,
 }) {
   return (
     <div class="task-list-container">
@@ -25,6 +26,7 @@ export default function Todolist({
             setTaskSelected={setTaskSelected}
             isEditModalActive={isEditModalActive}
             setEditModal={onSetEditModal}
+            onTaskComplete={onTaskComplete}
           />
         ))}
       </ul>

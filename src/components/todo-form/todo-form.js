@@ -11,6 +11,7 @@ export default function TodoForm({
   onAddTask,
   onDeleteTask,
   onEditTask,
+  onTaskComplete,
 }) {
   const [isDeleteModalActive, setIsDeleteModal] = useState(false);
   const [isEditModalActive, setIsEditModalActive] = useState(false);
@@ -26,6 +27,7 @@ export default function TodoForm({
         isEditModalActive={isEditModalActive}
         onSetEditModal={setIsEditModalActive}
         setTaskSelected={setTaskSelected}
+        onTaskComplete={onTaskComplete}
       />
       <TaskSummary allTask={allTasks} />
       <DeleteModal

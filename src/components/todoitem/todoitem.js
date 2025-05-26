@@ -5,22 +5,23 @@ export default function Todoitem({
   isEditModalActive,
   setEditModal,
   setTaskSelected,
+  onTaskComplete,
 }) {
   return (
     <li
       className={
-        task.taskPriority === "1"
+        (task.taskPriority === "1"
           ? "task-item priority-low"
           : task.taskPriority === "2"
           ? "task-item priority-medium"
           : task.taskPriority === "3"
           ? "task-item priority-high"
-          : "task-item"
+          : "task-item") + (task.isCompleted === true ? " completed" : "")
       }
     >
       <div className="task-content">
         <label className="checkbox-container">
-          <input type="checkbox" />
+          <input type="checkbox" onClick={() => onTaskComplete(task)} />
           <span className="checkmark"></span>
         </label>
         <div className="task-text">
