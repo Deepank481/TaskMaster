@@ -1,25 +1,50 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import Header from "./components/header";
+import TodoForm from "./components/todo-form/todo-form";
 
-function App() {
+export default function App() {
+  const [allTasks, setAllTasks] = useState([]);
+
+  function handleTaskAddition(task) {
+    setAllTasks(() => [...allTasks, task]);
+  }
+
+  function handleTaskCompletion(task) {
+    setAllTasks([
+      ...allTasks.map((t) => {
+        if (t.id === task.id) {
+          t.isCompleted = !t.isCompleted;
+        }
+        return t;
+      }),
+    ]);
+  }
+
+  useEffect(
+    function () {
+      console.log(allTasks);
+    },
+    [allTasks]
+  );
+
+  function handleTaskDeletion(task) {
+    setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id)]);
+  }
+
+  function handleTaskEdit(task) {
+    setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id), task]);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div class="app-container">
+      <Header />
+      <TodoForm
+        allTasks={allTasks}
+        onAddTask={handleTaskAddition}
+        onDeleteTask={handleTaskDeletion}
+        onEditTask={handleTaskEdit}
+        onTaskComplete={handleTaskCompletion}
+      />
     </div>
   );
 }
-
-export default App;
