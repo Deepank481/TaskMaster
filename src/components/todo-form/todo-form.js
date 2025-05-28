@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import TaskSummary from "../todolist/task-summary";
 import Todolist from "../todolist/todolist";
 import DeleteModal from "./delete-modal";
@@ -16,18 +16,27 @@ export default function TodoForm({
   const [isDeleteModalActive, setIsDeleteModal] = useState(false);
   const [isEditModalActive, setIsEditModalActive] = useState(false);
   const [taskSelected, setTaskSelected] = useState("");
+  const [taskToView, setTaskToView] = useState("all");
+  const [allTaskSet, setAllTaskSet] = useState([]);
+  useEffect(
+    function () {
+      setAllTaskSet(() => [...allTasks]);
+    },
+    [allTasks]
+  );
   return (
     <div className="main-content">
       <Form onAddTask={onAddTask} />
-      <TaskFilter />
+      <TaskFilter viewStatus={taskToView} setViewStatus={setTaskToView} />
       <Todolist
-        allTasks={allTasks}
+        allTasks={allTaskSet}
         onSetDeleteModal={setIsDeleteModal}
         isDeleteModalActive={isDeleteModalActive}
         isEditModalActive={isEditModalActive}
         onSetEditModal={setIsEditModalActive}
         setTaskSelected={setTaskSelected}
         onTaskComplete={onTaskComplete}
+        viewStatus={taskToView}
       />
       <TaskSummary allTask={allTasks} />
       <DeleteModal

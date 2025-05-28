@@ -21,10 +21,6 @@ export default function EditModal({ isActive, setIsActive, task, onEditTask }) {
     },
     [task?.taskPrioritry, task?.taskTitle]
   );
-
-  console.log(taskTitle);
-  console.log(taskPriority);
-  console.log(task);
   return (
     <div
       className={isActive ? "modal-overlay active" : "modal-overlay"}

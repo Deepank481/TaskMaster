@@ -9,7 +9,7 @@ export default function Form({ onAddTask }) {
     e.preventDefault();
     const newTask = new TodoItemModel(taskTitle, taskPriority, false);
     setTaskTitle("");
-    setTaskPriority(1);
+    setTaskPriority("1");
     onAddTask(newTask);
   }
 

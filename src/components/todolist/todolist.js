@@ -9,6 +9,7 @@ export default function Todolist({
   onSetEditModal,
   setTaskSelected,
   onTaskComplete,
+  viewStatus,
 }) {
   return (
     <div class="task-list-container">
@@ -17,18 +18,51 @@ export default function Todolist({
       </h2>
 
       <ul class="task-list">
-        {allTasks.map((task) => (
-          <Todoitem
-            task={task}
-            key={task.id}
-            setDeleteModal={onSetDeleteModal}
-            isDeleteModalActive={isDeleteModalActive}
-            setTaskSelected={setTaskSelected}
-            isEditModalActive={isEditModalActive}
-            setEditModal={onSetEditModal}
-            onTaskComplete={onTaskComplete}
-          />
-        ))}
+        {viewStatus === "all" &&
+          allTasks.map((task) => (
+            <Todoitem
+              task={task}
+              key={task.id}
+              setDeleteModal={onSetDeleteModal}
+              isDeleteModalActive={isDeleteModalActive}
+              setTaskSelected={setTaskSelected}
+              isEditModalActive={isEditModalActive}
+              setEditModal={onSetEditModal}
+              onTaskComplete={onTaskComplete}
+            />
+          ))}
+
+        {viewStatus === "completed" &&
+          allTasks
+            .filter((t) => t.isCompleted)
+            .map((task) => (
+              <Todoitem
+                task={task}
+                key={task.id}
+                setDeleteModal={onSetDeleteModal}
+                isDeleteModalActive={isDeleteModalActive}
+                setTaskSelected={setTaskSelected}
+                isEditModalActive={isEditModalActive}
+                setEditModal={onSetEditModal}
+                onTaskComplete={onTaskComplete}
+              />
+            ))}
+
+        {viewStatus === "active" &&
+          allTasks
+            .filter((t) => !t.isCompleted)
+            .map((task) => (
+              <Todoitem
+                task={task}
+                key={task.id}
+                setDeleteModal={onSetDeleteModal}
+                isDeleteModalActive={isDeleteModalActive}
+                setTaskSelected={setTaskSelected}
+                isEditModalActive={isEditModalActive}
+                setEditModal={onSetEditModal}
+                onTaskComplete={onTaskComplete}
+              />
+            ))}
       </ul>
     </div>
   );

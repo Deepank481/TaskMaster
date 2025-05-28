@@ -21,7 +21,11 @@ export default function Todoitem({
     >
       <div className="task-content">
         <label className="checkbox-container">
-          <input type="checkbox" onClick={() => onTaskComplete(task)} />
+          <input
+            type="checkbox"
+            onChange={() => onTaskComplete(task)}
+            checked={task.isCompleted}
+          />
           <span className="checkmark"></span>
         </label>
         <div className="task-text">
@@ -50,9 +54,6 @@ export default function Todoitem({
           onClick={() => {
             setDeleteModal(!isDeleteModalActive);
             setTaskSelected(() => task.id);
-            console.log(
-              "Present Status of Delete Modal::" + isDeleteModalActive
-            );
           }}
         >
           <i className="fas fa-trash-alt"></i>

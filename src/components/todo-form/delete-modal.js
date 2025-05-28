@@ -4,8 +4,6 @@ export default function DeleteModal({
   onDeleteTask,
   setIsActive,
 }) {
-  console.log(isActive);
-  console.log(task);
   return (
     <div
       className={isActive ? "modal-overlay active" : "modal-overlay"}
