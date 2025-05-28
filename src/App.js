@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import Header from "./components/header";
 import TodoForm from "./components/todo-form/todo-form";
+import SaveOrRetrieve from "./service/storage";
 
 export default function App() {
-  const [allTasks, setAllTasks] = useState([]);
+  const [allTasks, setAllTasks] = useState(SaveOrRetrieve("ret"));
 
   function handleTaskAddition(task) {
     setAllTasks(() => [...allTasks, task]);
@@ -23,6 +24,7 @@ export default function App() {
   useEffect(
     function () {
       console.log(allTasks);
+      SaveOrRetrieve("save", allTasks);
     },
     [allTasks]
   );
@@ -32,7 +34,8 @@ export default function App() {
   }
 
   function handleTaskEdit(task) {
-    setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id), task]);
+    // setAllTasks(() => [...allTasks.filter((t) => t.id !== task.id), task]);
+    setAllTasks(() => [...allTasks.map((t) => (t.id === task.id ? task : t))]);
   }
 
   return (
