@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/TaskMaster/static/css/main.0971c1cf.css",
+    "main.js": "/TaskMaster/static/js/main.432ca9f8.js",
+    "index.html": "/TaskMaster/index.html",
+    "main.0971c1cf.css.map": "/TaskMaster/static/css/main.0971c1cf.css.map",
+    "main.432ca9f8.js.map": "/TaskMaster/static/js/main.432ca9f8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.0971c1cf.css",
+    "static/js/main.432ca9f8.js"
+  ]
+}
